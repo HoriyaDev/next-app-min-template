@@ -1,0 +1,26 @@
+.navlink-hover {
+   
+    color: white;
+    font-weight: 400;
+  }
+  
+  .navlink-hover:hover {
+    background-color: #1A1F26;
+    color: white;
+  }
+  .navlink-active {
+    color: white;
+    font-weight: bold;
+  }
+  .navlink-active:active {
+    color: #B9F4FD;
+    font-weight: bold;
+  }
+  .icon-background {
+    background-color: pink;
+    padding: 5px;
+    border-radius: 20%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }

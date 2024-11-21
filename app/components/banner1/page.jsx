@@ -27,7 +27,8 @@ export default function Banner1() {
     <Link href='/dashboard/NewBanner'>
     <Button 
       variant="filled" 
-      color="#B2EFFD" 
+      color="#B2EFFD"
+       
       styles={{ root: { color: 'black' } }}
     >
       + Add New Banner

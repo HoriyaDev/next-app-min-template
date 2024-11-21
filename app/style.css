@@ -1,26 +1,56 @@
-.navlink-hover {
-   
-    color: white;
-    font-weight: 400;
+/* 
+
+
+  .navlink-hover {
+    color: white !important;
+    font-weight: 400 !important;
   }
   
   .navlink-hover:hover {
-    background-color: #1A1F26;
-    color: white;
+    background-color: #1A1F26 !important;
+    color: white !important;
   }
+  
   .navlink-active {
-    color: white;
-    font-weight: bold;
+    color: white !important;
+    font-weight: bold !important;
   }
+  
   .navlink-active:active {
-    color: #B9F4FD;
-    font-weight: bold;
+    color: #B9F4FD !important;
+    font-weight: bold !important;
   }
-  .icon-background {
-    background-color: pink;
-    padding: 5px;
-    border-radius: 20%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
+  
+  .button{
+    color:red;
+    background-color: white;
+  } */
+
+
+
+
+  /* Default navlink styles */
+.navlink-hover {
+  color: white !important;
+  font-weight: 400 !important;
+}
+
+/* Hover effect for inactive links */
+.navlink-hover:hover {
+  background-color: #1a1f26 !important;
+  color: white !important;
+}
+
+/* Active link styles */
+.navlink-active {
+  color: #B2EFFD!important;
+
+  
+  border-left: 4px solid #B9F4FD; /* Background color for active links */
+}
+
+/* Button styles */
+.button {
+  color: red;
+  background-color: white;
+}

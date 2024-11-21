@@ -95,13 +95,13 @@ const Login = () => {
   });
 
   const handleSubmit = (values) => {
-    setEmail(values.email); // Store the email
-    setShowVerification(true); // Show the Verification component
+    setEmail(values.email); 
+    setShowVerification(true); 
   };
 
-  // Conditional rendering
+ 
   if (showVerification) {
-    return <Verification email={email} />; // Pass the email to the Verification component
+    return <Verification email={email} />;
   }
 
   return (
@@ -120,7 +120,7 @@ const Login = () => {
           backgroundColor: '#000D1E',
           maxWidth: 440,
           padding: '40px',
-          height: '400px',
+          height: 'auto',
           borderRadius: '8px',
         }}
       >
@@ -133,18 +133,18 @@ const Login = () => {
             height={35}
           />
         </Box>
-        <Title c="white" size="h1" style={{ margin: '20px 0' }}>
+        <Title c="white" size={40} textAlign='center'  >
           WELCOME BACK
-        </Title>
-        <Text c="white">Welcome to the Gem Hunters Admin Portal</Text>
+        </Title> 
+        <Text c="white" mt={3} fz='15px' textAlign='center' ml={10}>Welcome to the Gem Hunters Admin Portal</Text>
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput
             styles={{
               input: {
                 backgroundColor: '#1A1F26',
                 color: 'white',
-                marginTop: '5px',
-                padding: '25px',
+                marginTop: '20px',
+                padding: '20px',
                 fontSize: '15px',
               },
             }}
@@ -153,12 +153,14 @@ const Login = () => {
           />
           <Group position="right" mt="md">
             <Button
+            variant="filled" 
               type="submit"
-              c="#000D1E"
+            color="#B2EFFD"
               fz="18px"
               px="70px"
+              mt={10}
               fullWidth
-              style={{ backgroundColor: '#B2EFFD' }}
+              styles={{ root: { color: 'black' } }}
             >
               Continue With Email
             </Button>

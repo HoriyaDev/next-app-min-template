@@ -1,6 +1,8 @@
 'use client'
 import { Tabs, rem } from '@mantine/core';
-import Banner1 from '../components/banner1/page'
+import Banner1 from '../components/Banners/Banner1'
+import Banner2 from '../components/Banners/Banner2'
+import Banner3 from '../components/Banners/Banner3'
 
 
 export default function Dashboard() {
@@ -24,12 +26,12 @@ export default function Dashboard() {
         <Banner1  />
       </Tabs.Panel>
 
-      <Tabs.Panel value="messages">
-        Messages tab content
+      <Tabs.Panel value="banner2">
+      <Banner2 />
       </Tabs.Panel>
 
-      <Tabs.Panel value="settings">
-        Settings tab content
+      <Tabs.Panel value="banner3">
+      <Banner3  />
       </Tabs.Panel>
     </Tabs>
   );

@@ -92,3 +92,5 @@ const Verification = ({ email }) => {
 };
 
 export default Verification;
+
+

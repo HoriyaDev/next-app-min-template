@@ -64,6 +64,26 @@ import {
       path: "/dashboard/settings",
     },
   ];
-  
+   export const options = {
+    livestream: [
+        { value: 'option1', label: 'Live Stream Option 1' },
+        { value: 'option2', label: 'Live Stream Option 2' },
+        { value: 'option3', label: 'Live Stream Option 3' },
+        { value: 'option4', label: 'Live Stream Option 4' },
+    ],
+    gemreportes: [
+        { value: 'option1', label: 'Gem Report Option 1' },
+        { value: 'option2', label: 'Gem Report Option 2' },
+        { value: 'option3', label: 'Gem Report Option 3' },
+        { value: 'option4', label: 'Gem Report Option 4' },
+    ],
+    academy: [
+        { value: 'option1', label: 'Academy Option 1' },
+        { value: 'option2', label: 'Academy Option 2' },
+        { value: 'option3', label: 'Academy Option 3' },
+        { value: 'option4', label: 'Academy Option 4' },
+    ],
+};
+    
 
   

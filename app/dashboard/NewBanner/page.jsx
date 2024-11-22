@@ -1,8 +1,11 @@
 import React from 'react'
-
+import CreateBanner from '../../components/forms/CreateBanner'
 const NewBanner = () => {
   return (
-    <div>NewBanner</div>
+   <>
+   <CreateBanner />
+   
+   </>
   )
 }
 

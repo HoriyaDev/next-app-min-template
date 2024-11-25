@@ -49,7 +49,7 @@ export default function Sidebar() {
               className="navlink-hover"
              
             >
-              {item.category &&
+              {/* {item.category &&
                 item.category.map((subItem, index) => (
                   <NavLink
                     key={`${item.id}-${index}`}
@@ -64,7 +64,7 @@ export default function Sidebar() {
                     }
                     onClick={() => setActiveId(subItem.id)}
                   />
-                ))}
+                ))} */}
             </NavLink>
           ))}
         </Flex>

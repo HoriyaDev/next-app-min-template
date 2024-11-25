@@ -1,4 +1,5 @@
-'use client';
+'use client'
+
 
 import React, { useState, useRef } from 'react';
 import {
@@ -12,18 +13,19 @@ import {
   Radio,
   Select,
 } from '@mantine/core';
-import { Image as MantineImage } from '@mantine/core'; 
-import { IconArrowNarrowLeft, IconX } from '@tabler/icons-react';
+import { Image as MantineImage } from '@mantine/core';
+import { IconArrowNarrowLeft, IconX, IconInfoCircle } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
 import { Dropzone } from '@mantine/dropzone';
+import { notifications } from '@mantine/notifications';
 import { options } from '../../utils/constant';
 import '../../style.css';
 
 export default function CreateBanner() {
   const [file, setFile] = useState(null);
-  const [error, setError] = useState(null);
+  const [show, setShow] = useState(true);
   const [selectedOption, setSelectedOption] = useState('');
-  const [radioValue, setRadioValue] = useState('');
+  const [radioValue, setRadioValue] = useState('livestream');
   const router = useRouter();
   const openRef = useRef(null);
 
@@ -31,41 +33,33 @@ export default function CreateBanner() {
     router.push('./');
   };
 
-  const validateImageDimensions = (file) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = URL.createObjectURL(file);
-      img.onload = () => {
-        // Check if the image dimensions are within the allowed limits
-        if (img.width <= 1312 && img.height <= 512) {
-          resolve(file); // Resolve with the file if valid
-        } else {
-          reject('Image dimensions are too large. Maximum allowed: 1312x512 pixels.');
-        }
-      };
-      img.onerror = () => {
-        reject('Invalid image file.');
-      };
-    });
-  };
-
   const handleDrop = (files) => {
     const file = files[0];
-    setError(null);
+    const image = new Image();
+    const imageUrl = URL.createObjectURL(file);
 
-    validateImageDimensions(file)
-      .then((validFile) => {
-        setFile(validFile); // Set the valid file
-      })
-      .catch((err) => {
-        setError(err); // Set the error message
-        setFile(null); // Clear any existing file
-        alert(err); // Show alert if image is too large
-      });
+    image.onload = () => {
+      const { width, height } = image;
+      if (width > 1312 || height > 520) {
+        console.log('Dimensions exceeded'); 
+        notifications.show({
+          title: 'Invalid Dimensions',
+          message: 'File dimensions exceed the allowed size of 1312x520 pixels.',
+          color: 'red',
+          icon: <IconX />,
+        });
+      } else {
+        setFile(imageUrl);
+        setShow(false); 
+      }
+    };
+
+    image.src = imageUrl;
   };
 
   const handleClose = () => {
     setFile(null);
+    setShow(true); 
   };
 
   const handleRadioChange = (value) => {
@@ -98,56 +92,47 @@ export default function CreateBanner() {
             <Dropzone
               openRef={openRef}
               accept={['image/png', 'image/jpeg', 'image/svg+xml', 'image/gif']}
-              onDrop={(files) => handleDrop(files)}
+              onDrop={handleDrop}
               multiple={false}
               maxSize={3 * 1024 ** 2}
             >
               <Flex justify="center">
-                <Button
-                  onClick={() => openRef.current()}
-                  bg={'#B2EFFD'}
-                  c={'black'}
-                >
-                  Select Files
-                </Button>
+                {/* Conditionally render the button */}
+                {show && (
+                  <Button onClick={() => openRef.current()} bg={'#B2EFFD'} c={'black'}>
+                    Select Files
+                  </Button>
+                )}
               </Flex>
             </Dropzone>
 
             {file && (
               <Flex
                 bg={'#545D68'}
-                w={'max-content'}
-                h={'max-content'}
-                justify={'center'}
-                align={'center'}
-                p={15}
+                w={'fit-content'}
+                h={'fit-content'}
+                gap="sm"
+                justify="space-between"
+                align="center"
                 style={{ borderRadius: '20px' }}
+                p={10}
               >
                 <MantineImage
-                  src={URL.createObjectURL(file)}
+                  src={file}
                   alt="Preview"
-                  radius="md"
                   withPlaceholder
                   caption="Selected image preview"
-                  w={250}
-                  h={150}
+                  w={200}
+                  h={100}
                 />
-                <Button onClick={handleClose} bg={'transparent'}>
-                  <IconX />
-                </Button>
+                <IconX onClick={handleClose} cursor={'pointer'} />
               </Flex>
             )}
           </Box>
         </Center>
-
-        {error && (
-          <Text color="red" mt={10}>
-            {error}
-          </Text>
-        )}
       </Box>
 
-      {/* Radio Buttons */}
+      {/* Radio Buttons for Linked With */}
       <Flex align="center" direction={'row'} mt={20}>
         <Title c={'white'} order={3}>
           Linked With
@@ -159,11 +144,6 @@ export default function CreateBanner() {
             label="LiveStream"
             checked={radioValue === 'livestream'}
             onChange={() => handleRadioChange('livestream')}
-            styles={{
-              radio: {
-                backgroundColor: 'black', // Customize the radio button
-              },
-            }}
           />
           <Radio
             variant="outline"
@@ -171,11 +151,6 @@ export default function CreateBanner() {
             label="Gem Reportes"
             checked={radioValue === 'gemreportes'}
             onChange={() => handleRadioChange('gemreportes')}
-            styles={{
-              radio: {
-                backgroundColor: 'black', // Customize the radio button
-              },
-            }}
           />
           <Radio
             variant="outline"
@@ -183,15 +158,11 @@ export default function CreateBanner() {
             label="Academy"
             checked={radioValue === 'academy'}
             onChange={() => handleRadioChange('academy')}
-            styles={{
-              radio: {
-                backgroundColor: 'black', // Customize the radio button
-              },
-            }}
           />
         </Group>
       </Flex>
 
+      {/* Select Dropdown */}
       <Select
         value={selectedOption}
         onChange={setSelectedOption}

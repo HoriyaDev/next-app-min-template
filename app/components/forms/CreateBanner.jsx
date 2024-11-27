@@ -21,17 +21,30 @@ import { notifications } from '@mantine/notifications';
 import { options } from '../../utils/constant';
 import '../../style.css';
 
-export default function CreateBanner() {
+export default function CreateBanner({onBack}) {
   const [file, setFile] = useState(null);
   const [show, setShow] = useState(true);
   const [selectedOption, setSelectedOption] = useState('');
   const [radioValue, setRadioValue] = useState('livestream');
+  const [array , setArray ] = useState([])
   const router = useRouter();
   const openRef = useRef(null);
 
-  const handleBack = () => {
-    router.push('./');
-  };
+  // const handleBack = () => {
+  //   router.push('./');
+  // };
+
+ const handleCreate = () =>{
+ const  newArray = {
+    image: file,
+    linkedWith: radioValue,
+    listItem:selectedOption,
+  }
+
+
+  setArray((pre)=>[...pre , newArray])
+  console.log(newArray)
+ }
 
   const handleDrop = (files) => {
     const file = files[0];
@@ -41,7 +54,7 @@ export default function CreateBanner() {
     image.onload = () => {
       const { width, height } = image;
       if (width > 1312 || height > 520) {
-        console.log('Dimensions exceeded'); 
+        console.log('Dimensions exceeded');
         notifications.show({
           title: 'Invalid Dimensions',
           message: 'File dimensions exceed the allowed size of 1312x520 pixels.',
@@ -50,7 +63,7 @@ export default function CreateBanner() {
         });
       } else {
         setFile(imageUrl);
-        setShow(false); 
+        setShow(false);
       }
     };
 
@@ -59,7 +72,7 @@ export default function CreateBanner() {
 
   const handleClose = () => {
     setFile(null);
-    setShow(true); 
+    setShow(true);
   };
 
   const handleRadioChange = (value) => {
@@ -69,9 +82,9 @@ export default function CreateBanner() {
 
   return (
     <Box w="96%" style={{ color: 'white' }}>
-      {/* Header Section */}
+   
       <Title order={1} fw={900}>
-        <IconArrowNarrowLeft size={30} onClick={handleBack} /> Add New Banner
+        <IconArrowNarrowLeft size={30} onClick={onBack} cursor={'pointer'} /> Add New Banner
       </Title>
 
       <Box mt={15}>
@@ -124,6 +137,7 @@ export default function CreateBanner() {
                   caption="Selected image preview"
                   w={200}
                   h={100}
+                  style={{objectFit:'contain'}}
                 />
                 <IconX onClick={handleClose} cursor={'pointer'} />
               </Flex>
@@ -132,7 +146,7 @@ export default function CreateBanner() {
         </Center>
       </Box>
 
-      {/* Radio Buttons for Linked With */}
+     
       <Flex align="center" direction={'row'} mt={20}>
         <Title c={'white'} order={3}>
           Linked With
@@ -192,10 +206,12 @@ export default function CreateBanner() {
 
       {/* Submit Button */}
       <Flex justify="flex-end" mt={20}>
-        <Button variant="filled" bg="#B2EFFD" c="black">
+        <Button variant="filled" bg="#B2EFFD" c="black" onClick={handleCreate}>
           Create
         </Button>
       </Flex>
     </Box>
   );
 }
+
+

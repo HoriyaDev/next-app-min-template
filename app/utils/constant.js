@@ -15,13 +15,14 @@ import {
       icon: IconSection ,
       iconColor:'black',
       iconBg:'#E7F5FF',
-      category: [
-        { 
-          id:1 , label: 'Home', path:'/dashboard/BannerHome'  },
-        {   id:2 , label: 'Livestreams',  path:'/dashboard/BannerLivestreams' },
-        {   id:3 , label: 'Gem reporters', path: '/dashboard/BannerGemreporters' },
-        {  id:4 , label: 'Academy', path:'/dashboard/BannerAcademy' },
-      ],
+      // category: [
+      //   { 
+      //     id:1 , label: 'Home', path:'/dashboard/BannerHome'  },
+      //   {   id:2 , label: 'Livestreams',  path:'/dashboard/BannerLivestreams' },
+      //   {   id:3 , label: 'Gem reporters', path: '/dashboard/BannerGemreporters' },
+      //   {  id:4 , label: 'Academy', path:'/dashboard/BannerAcademy' },
+      // ],
+      path: "/dashboard/Banner",
     },
     {
       id: 1,

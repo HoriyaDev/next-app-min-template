@@ -7,7 +7,7 @@ export default function Banner3() {
     <>
     
     
-    <Link href='/dashboard/NewBanner'>
+    {/* <Link href='/dashboard/NewBanner'>
     <Button 
       variant="filled" 
       color="#B2EFFD"
@@ -19,7 +19,7 @@ export default function Banner3() {
      <IconPlus />Add New Banner
     </Button>
     
-    </Link>
+    </Link> */}
 
     
     </>  );

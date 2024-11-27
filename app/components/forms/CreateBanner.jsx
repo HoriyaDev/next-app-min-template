@@ -15,7 +15,7 @@ import {
 } from '@mantine/core';
 import { Image as MantineImage } from '@mantine/core';
 import { IconArrowNarrowLeft, IconX, IconInfoCircle } from '@tabler/icons-react';
-import { useRouter } from 'next/navigation';
+import { useRouter  , useSearchParams} from 'next/navigation';
 import { Dropzone } from '@mantine/dropzone';
 import { notifications } from '@mantine/notifications';
 import { options } from '../../utils/constant';
@@ -30,21 +30,36 @@ export default function CreateBanner({onBack}) {
   const router = useRouter();
   const openRef = useRef(null);
 
+
   // const handleBack = () => {
   //   router.push('./');
   // };
 
- const handleCreate = () =>{
- const  newArray = {
-    image: file,
-    linkedWith: radioValue,
-    listItem:selectedOption,
-  }
+  const handleCreate = () => {
+    if (!file || !radioValue || !selectedOption) {
+      notifications.show({
+        title: 'Missing Information',
+        message: 'Please provide all required details.',
+        color: 'red',
+        icon: <IconX />,
+      });
+      return;
+    }
+    const bannerData = {
+      image: file,
+      radioValue,
+      listItem: selectedOption,
+    };
+  
+    // Pass data as query parameters
+    router.push(`/dashboard?data=${encodeURIComponent(JSON.stringify(bannerData))}`);
+  };
+  
 
 
-  setArray((pre)=>[...pre , newArray])
-  console.log(newArray)
- }
+
+
+
 
   const handleDrop = (files) => {
     const file = files[0];
@@ -213,5 +228,3 @@ export default function CreateBanner({onBack}) {
     </Box>
   );
 }
-
-

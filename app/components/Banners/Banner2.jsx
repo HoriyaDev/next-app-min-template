@@ -2,13 +2,13 @@ import { Button, Card, Overlay, Text  } from '@mantine/core';
 import Link from 'next/link';
 import {IconPlus} from '@tabler/icons-react'
 
-export default function Banner2() {
+export default function Banner2({bannerRadio}) {
   return (
     <>
     
+    <h1 style={{color:'white'}}>{bannerRadio}</h1>
     
-    
- 
+{/*  
     <Link href='/dashboard/NewBanner'>
     <Button 
       variant="filled" 
@@ -21,7 +21,7 @@ export default function Banner2() {
      <IconPlus />Add New Banner
     </Button>
     
-    </Link>
+    </Link> */}
 
     
     </>  );
